@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francisco Espinosa | Technical Support & Implementation Specialist</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --border-color: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .contact-info a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* Project Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-top: 1rem;
+            border: 1px solid var(--border-color);
+            background-color: #0b0f19;
+        }
+
+        /* Timeline Items */
+        .timeline-item {
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .role-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .company-meta {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+
+        .date-location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.25rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        ul li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Achievements Badge Grid */
+        .badges-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .badges-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        .badge-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .badge-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: var(--accent-color);
+        }
+
+        .badge-card p {
+            font-size: 0.85rem;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Francisco Espinosa</h1>
+            <div class="subtitle">Technical Support & Implementation Specialist</div>
+            <ul class="contact-info">
+                <li>📍 Mexico City, Mexico</li>
+                <li>📧 <a href="mailto:franciscoespinosamiranda@gmail.com">franciscoespinosamiranda@gmail.com</a></li>
+                <li>💼 <a href="https://linkedin.com/in/francisco-espinosa-1b4665347/" target="_blank">LinkedIn</a></li>
+            </ul>
+        </header>
+
+        <!-- Summary -->
+        <section>
+            <h2>Professional Summary</h2>
+            <p>Highly analytical, fully bilingual (English C2 / Spanish Native) Technical Support & Implementation Specialist bridging hardware engineering, web deployment, and international customer experience. Proven track record of managing complex ticket-based workflows, troubleshooting physical hardware systems (PCBs, solar infrastructure, industrial testing equipment), and navigating Linux/Windows environments. A disciplined, rapid learner who excels at translating complex technical issues into actionable client solutions.</p>
+        </section>
+
+        <!-- Achievements & Attributes -->
+        <section>
+            <h2>Attributes & Notable Achievements</h2>
+            <div class="badges-grid">
+                <div class="badge-card">
+                    <div class="badge-icon">♟️</div>
+                    <h3>Competitive Chess</h3>
+                    <p><strong>Peak Rating: 1985 Elo (Top 2% globally).</strong> Demonstrates high logical capacity for calculation, deep self-study, and tactical precision under intense pressure.</p>
+                </div>
+                <div class="badge-card">
+                    <div class="badge-icon">🥊</div>
+                    <h3>MMA</h3>
+                    <p><strong>2nd Place Nationally.</strong> Reflects intense personal discipline, stress tolerance, mental grit, and physical adaptability on the fly.</p>
+                </div>
+                <div class="badge-card">
+                    <div class="badge-icon">🥋</div>
+                    <h3>Sanda</h3>
+                    <p><strong>Metropolitan Champion.</strong> Showcases a relentless work ethic and dedication to mastering complex mechanics through years of systematic training.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects (The Star of the Show!) -->
+        <section>
+            <h2>Key Engineering Projects</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Industrial Dynamometer Installation</h3>
+                    <p>Executed the physical installation, anchoring, and alignment of heavy-duty chassis dynamometers used in official vehicle verification centers (<em>verificentros</em>) across Mexico. Calibrated high-capacity mechanical components and sensors to meet strict environmental testing standards.</p>
+                    <!-- Swap src with your actual image filename later -->
+                    <img src="placeholder-dyno.jpg" alt="Chassis Dynamometer System">
+                </div>
+                <div class="card">
+                    <h3>Commercial Control Panels</h3>
+                    <p>Designed, wired, and tested custom electrical control panels (<em>tableros de control</em>) for commercial boutique retail spaces. Interpreted complex wiring schematics and configured high-voltage circuitry to meet specific load requirements safely.</p>
+                    <img src="placeholder-panel.jpg" alt="Electrical Control Panel">
+                </div>
+                <div class="card">
+                    <h3>Grid-Interconnected Solar Systems</h3>
+                    <p>Planned and installed physical solar arrays, optimizing panel placement, angle tilt, and inverter wiring to maximize energy generation and ensure seamless CFE grid integration.</p>
+                    <img src="placeholder-solar.jpg" alt="Solar Array Installation">
+                </div>
+                <div class="card">
+                    <h3>E-Commerce Web Infrastructure</h3>
+                    <p>Designed, built, and launched a secure, custom e-commerce web platform from scratch. Integrated functional shopping carts, secured API configurations, and managed routine hosting, server checks, and speed optimizations to ensure 99.9% uptime.</p>
+                    <img src="placeholder-ecommerce.jpg" alt="E-Commerce Web Server Setup">
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section>
+            <h2>Professional Experience</h2>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="role-title">Independent Electronics Technician</div>
+                        <div class="company-meta">Self-Employed</div>
+                    </div>
+                    <div class="date-location">11/2025 - Present | Mexico City</div>
+                </div>
+                <ul>
+                    <li>Manage an independent repair service specializing in hardware restoration, software troubleshooting, and data recovery for laptops and mobile devices.</li>
+                    <li>Perform diagnostic testing and precision repairs, including screen and battery replacements, and basic logic board servicing using bench power supplies and specialized hand tools.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="role-title">Teacher</div>
+                        <div class="company-meta">Centro de aprendizaje Parusía</div>
+                    </div>
+                    <div class="date-location">06/2025 - Present | Mexico City</div>
+                </div>
+                <ul>
+                    <li>Taught Mathematics and English to a wide demographic of students, ranging from kindergarten through high school.</li>
+                    <li>Adapted instructional methods and communication styles to effectively educate and engage students across highly diverse age groups and comprehension levels.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="role-title">Assistant Hardware Engineer & Assembly Technician</div>
+                        <div class="company-meta">Dinosymmetric</div>
+                    </div>
+                    <div class="date-location">04/2024 - 05/2025 | Mexico City</div>
+                </div>
+                <ul>
+                    <li>Served as an assistant engineer, performing precision assembly of Printed Circuit Boards (PCBs) and electrical wiring systems for industrial testing machinery.</li>
+                    <li>Collaborated closely with senior engineers on the physical manufacturing, structural assembly, and calibration of complete dynamometer systems.</li>
+                    <li>Executed on-site diagnostic testing and hardware installations, ensuring machinery met strict engineering specifications.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="role-title">Customer & Technical Support Specialist</div>
+                        <div class="company-meta">Keywords Studios</div>
+                    </div>
+                    <div class="date-location">03/2021 - 02/2024 | CDMX / Remote</div>
+                </div>
+                <ul>
+                    <li>Managed high-volume, ticket-based support operations for an international gaming company, consistently meeting strict SLA (Service Level Agreement) response times.</li>
+                    <li>Investigated, diagnosed, and resolved client technical complaints, system glitches, and account discrepancies.</li>
+                    <li>Streamlined order processing and billing resolutions, ensuring a seamless customer journey and high retention rates.</li>
+                    <li>Utilized collaborative workspace tools (Slack, Discord) to coordinate with internal teams to escalate and resolve complex technical bugs.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section>
+            <h2>Technical Skills & Languages</h2>
+            <ul>
+                <li><strong>Languages:</strong> English (C2 Proficient / Fully Bilingual), Spanish (Native Speaker).</li>
+                <li><strong>Hardware Diagnostics & Repair:</strong> Device Teardown & Assembly, Component Replacement (Screens, Batteries), Basic Logic Board Troubleshooting, Bench Power Supply Operation, Laptop Data Recovery.</li>
+                <li><strong>Technical Troubleshooting:</strong> Hardware Installation, PCB Assembly, Circuit Diagnostics, Web E-Commerce Deployment, Signal Power Basics.</li>
+                <li><strong>Operating Systems & Software:</strong> Linux (Debian), Windows, Android, Slack, Discord, DaVinci Resolve, FL Studio.</li>
+                <li><strong>Customer Operations:</strong> Ticket-Based Support, Case Management, Order Processing, Resolution Delivery.</li>
+            </ul>
+        </section>
+
+    </div>
+</body>
+</html>
