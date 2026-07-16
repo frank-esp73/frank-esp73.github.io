@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Francisco Espinosa — Technical Support & Implementation Specialist</title>
+<meta name="description" content="Francisco Espinosa — Technical Support & Implementation Specialist bridging hardware diagnostics, industrial installation, and international customer support.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --bg:#14181c;
+    --bg-alt:#171c21;
+    --panel:#1c232a;
+    --panel-hi:#232b33;
+    --line:#2c343c;
+    --line-soft:#232a30;
+    --text:#edeff3;
+    --text-dim:#98a3ad;
+    --text-faint:#5f6b75;
+    --amber:#f2a93c;
+    --amber-dim:#c98a2b;
+    --amber-soft:rgba(242,169,60,0.1);
+    --signal:#63d9a8;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'IBM Plex Sans', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+    --maxw:1080px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:48px 48px;
+    background-position:center top;
+  }
+
+  a{ color:inherit; }
+
+  ::selection{ background:var(--amber); color:#14181c; }
+
+  :focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+  }
+
+  img, svg{ display:block; max-width:100%; }
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 1.75rem;
+  }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+  }
+  .eyebrow::before{
+    content:"";
+    width:14px;
+    height:1px;
+    background:var(--amber-dim);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family:var(--font-display);
+    letter-spacing:-0.01em;
+    color:var(--text);
+  }
+
+  section{
+    padding:4.5rem 0;
+    border-bottom:1px solid var(--line-soft);
+  }
+
+  section > .wrap > .eyebrow{ margin-bottom:1rem; }
+
+  section h2{
+    font-size:clamp(1.5rem, 1.1rem + 1.4vw, 2rem);
+    margin-bottom:2.25rem;
+    max-width:32ch;
+  }
+
+  p{ color:var(--text-dim); }
+
+  /* ---------- Header / Hero ---------- */
+
+  .hero{
+    position:relative;
+    padding-top:4rem;
+    padding-bottom:3.5rem;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; top:0;
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--amber) 18%, transparent 42%);
+    background-size:220% 100%;
+    animation:sweep 7s linear infinite;
+    opacity:0.55;
+  }
+
+  @keyframes sweep{
+    0%{ background-position:120% 0; }
+    100%{ background-position:-100% 0; }
+  }
+
+  .plate{
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:6px;
+    padding:2.25rem 2rem;
+    position:relative;
+  }
+  .plate::before,
+  .plate::after,
+  .plate .rivet-l,
+  .plate .rivet-r{
+    content:"";
+    position:absolute;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:var(--line);
+    box-shadow:0 0 0 1px var(--bg);
+  }
+  .plate::before{ top:10px; left:10px; }
+  .plate::after{ top:10px; right:10px; }
+  .plate .rivet-l{ bottom:10px; left:10px; }
+  .plate .rivet-r{ bottom:10px; right:10px; }
+
+  .status-line{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    color:var(--text-faint);
+    text-transform:uppercase;
+    margin-bottom:1.4rem;
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+    flex-wrap:wrap;
+  }
+  .status-dot{
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--signal);
+    box-shadow:0 0 0 3px rgba(99,217,168,0.15);
+    flex:none;
+  }
+  .status-line strong{
+    color:var(--signal);
+    font-weight:500;
+  }
+
+  .hero h1{
+    font-size:clamp(2.3rem, 1.7rem + 2.6vw, 3.6rem);
+    font-weight:700;
+    line-height:1.03;
+  }
+
+  .hero .role{
+    font-family:var(--font-mono);
+    color:var(--amber);
+    font-size:clamp(0.95rem, 0.85rem + 0.4vw, 1.1rem);
+    margin-top:0.85rem;
+    letter-spacing:0.01em;
+  }
+
+  .avatar{
+    width:132px;
+    height:132px;
+    border-radius:50%;
+    margin-top:1.5rem;
+    background:var(--bg-alt);
+    border:1.5px dashed var(--line);
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+  .avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .avatar-fallback{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--text-faint);
+  }
+  .avatar-fallback svg{ width:44px; height:44px; }
+
+  .spec-row{
+    margin-top:1.75rem;
+    padding-top:1.5rem;
+    border-top:1px dashed var(--line);
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.5rem 0;
+    font-family:var(--font-mono);
+    font-size:0.82rem;
+    color:var(--text-dim);
+  }
+  .spec-row span{
+    padding:0 1rem;
+    border-right:1px solid var(--line);
+  }
+  .spec-row span:first-child{ padding-left:0; }
+  .spec-row span:last-child{ border-right:none; }
+  .spec-row a{
+    text-decoration:none;
+    color:var(--text-dim);
+    transition:color .15s;
+  }
+  .spec-row a:hover{ color:var(--amber); }
+
+  /* ---------- Summary ---------- */
+
+  .summary .wrap{ max-width:calc(var(--maxw) - 0px); }
+  .summary p{
+    font-size:1.05rem;
+    color:var(--text);
+    max-width:70ch;
+  }
+  .summary p + p{ margin-top:1rem; color:var(--text-dim); font-size:1rem; }
+
+  /* ---------- Attributes ---------- */
+
+  .gauges{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.25rem;
+  }
+
+  .gauge-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:1.5rem;
+    transition:border-color .15s, transform .15s;
+  }
+  .gauge-card:hover{
+    border-color:var(--amber-dim);
+    transform:translateY(-2px);
+  }
+
+  .gauge-icon{ width:34px; height:34px; margin-bottom:1.1rem; color:var(--amber); }
+
+  .gauge-stat{
+    font-family:var(--font-mono);
+    font-size:1.5rem;
+    color:var(--text);
+    font-weight:500;
+    margin-bottom:0.15rem;
+  }
+  .gauge-sub{
+    font-family:var(--font-mono);
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:0.9rem;
+  }
+  .gauge-card h3{
+    font-size:1rem;
+    margin-bottom:0.4rem;
+    font-weight:600;
+  }
+  .gauge-card p{ font-size:0.9rem; }
+
+  /* ---------- Projects ---------- */
+
+  .projects-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.25rem;
+  }
+
+  .project-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:1.75rem;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    transition:border-color .15s, transform .15s;
+  }
+  .project-card:hover{
+    border-color:var(--amber-dim);
+    transform:translateY(-2px);
+  }
+  .project-icon{
+    width:44px; height:44px;
+    color:var(--amber);
+    flex:none;
+  }
+  .project-card h3{ font-size:1.08rem; font-weight:600; }
+  .project-card p{ font-size:0.92rem; }
+  .project-tag{
+    font-family:var(--font-mono);
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+  }
+
+  /* ---------- Experience ---------- */
+
+  .timeline{
+    position:relative;
+    padding-left:2rem;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:5px;
+    top:6px;
+    bottom:6px;
+    width:1px;
+    background:var(--line);
+  }
+
+  .tl-item{
+    position:relative;
+    padding-bottom:2.75rem;
+  }
+  .tl-item:last-child{ padding-bottom:0; }
+
+  .tl-node{
+    position:absolute;
+    left:-2rem;
+    top:0.35rem;
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--amber-dim);
+  }
+  .tl-item.current .tl-node{
+    border-color:var(--amber);
+    box-shadow:0 0 0 4px var(--amber-soft);
+  }
+
+  .tl-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:0.5rem 1.5rem;
+    margin-bottom:0.65rem;
+  }
+  .tl-role{ font-size:1.08rem; font-weight:600; font-family:var(--font-display); }
+  .tl-org{ color:var(--amber); font-size:0.9rem; margin-top:0.15rem; }
+  .tl-meta{
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    color:var(--text-faint);
+    white-space:nowrap;
+  }
+
+  .tl-item ul{ list-style:none; }
+  .tl-item li{
+    position:relative;
+    padding-left:1.1rem;
+    color:var(--text-dim);
+    font-size:0.94rem;
+    margin-bottom:0.45rem;
+  }
+  .tl-item li::before{
+    content:"–";
+    position:absolute;
+    left:0;
+    color:var(--text-faint);
+  }
+
+  /* ---------- Skills ---------- */
+
+  .skill-groups{ display:flex; flex-direction:column; gap:1.4rem; }
+  .skill-row{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:1rem 2rem;
+    padding:1.1rem 0;
+    border-top:1px solid var(--line-soft);
+  }
+  .skill-row:last-child{ border-bottom:1px solid var(--line-soft); }
+  .skill-label{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:0.5rem; }
+  .chip{
+    font-family:var(--font-mono);
+    font-size:0.8rem;
+    color:var(--text);
+    background:var(--bg-alt);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:0.3rem 0.65rem;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer{ padding:3.5rem 0 3rem; }
+  .foot-plate{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:1.25rem;
+  }
+  .foot-title{
+    font-family:var(--font-display);
+    font-size:1.3rem;
+    font-weight:700;
+  }
+  .foot-links{
+    display:flex;
+    gap:1.75rem;
+    font-family:var(--font-mono);
+    font-size:0.85rem;
+  }
+  .foot-links a{
+    text-decoration:none;
+    color:var(--text-dim);
+    border-bottom:1px solid transparent;
+    transition:color .15s, border-color .15s;
+  }
+  .foot-links a:hover{ color:var(--amber); border-color:var(--amber-dim); }
+  .foot-note{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    color:var(--text-faint);
+    margin-top:1.75rem;
+  }
+
+  /* ---------- Responsive ---------- */
+
+  @media (max-width:760px){
+    section{ padding:3rem 0; }
+    .gauges{ grid-template-columns:1fr; }
+    .projects-grid{ grid-template-columns:1fr; }
+    .skill-row{ grid-template-columns:1fr; gap:0.6rem; }
+    .spec-row span{ border-right:none; padding:0; width:100%; }
+    .tl-head{ flex-direction:column; align-items:flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .hero::after{ animation:none; }
+  }
+
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="plate">
+        <span class="rivet-l"></span><span class="rivet-r"></span>
+        <div class="status-line">
+          <span class="status-dot" aria-hidden="true"></span>
+          <strong>Open to new roles</strong>
+          <span aria-hidden="true">·</span>
+          <span>Field &amp; technical support / implementation</span>
+        </div>
+        <h1>Francisco Espinosa</h1>
+
+        <div class="avatar">
+          <img src="profile.jpg" alt="Francisco Espinosa" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4">
+              <circle cx="22" cy="16" r="7"/>
+              <path d="M8 36c1.5-8 6.5-12 14-12s12.5 4 14 12" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="role">Technical Support &amp; Implementation Specialist</div>
+
+        <div class="spec-row">
+          <span>Mexico City, MX</span>
+          <span>EN — C2 · ES — Native</span>
+          <span><a href="mailto:franciscoespinosamiranda@gmail.com">franciscoespinosamiranda@gmail.com</a></span>
+          <span><a href="https://linkedin.com/in/francisco-espinosa-1b4665347/" target="_blank" rel="noopener">LinkedIn ↗</a></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="summary" id="about">
+      <div class="wrap">
+        <p class="eyebrow">Profile</p>
+        <p>I bridge hardware and support work: years spent inside circuit boards, industrial test equipment, and solar arrays, paired with high-volume ticket-based support for an international customer base under strict SLAs.</p>
+        <p>Fully bilingual, comfortable across Linux and Windows environments, and quick to get fluent in a new system — I translate physical, technical problems into clear fixes and clear explanations, for engineers and end users alike.</p>
+      </div>
+    </section>
+
+    <section class="attributes" id="attributes">
+      <div class="wrap">
+        <p class="eyebrow">Attributes</p>
+        <h2>What competition has actually trained</h2>
+        <div class="gauges">
+
+          <div class="gauge-card">
+            <svg class="gauge-icon" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.4">
+              <path d="M6 27 A13 13 0 0 1 28 27" stroke-linecap="round"/>
+              <line x1="17" y1="27" x2="24" y2="13" stroke-linecap="round"/>
+              <circle cx="17" cy="27" r="1.6" fill="currentColor" stroke="none"/>
+              <line x1="6" y1="27" x2="6" y2="24.5"/>
+              <line x1="28" y1="27" x2="28" y2="24.5"/>
+              <line x1="17" y1="14" x2="17" y2="16.5"/>
+            </svg>
+            <div class="gauge-stat">1985 Elo</div>
+            <div class="gauge-sub">Top 2% Globally</div>
+            <h3>Competitive Chess</h3>
+            <p>Demonstrates a highly disciplined capacity for deep self-study, pattern recognition, and tactical thinking.</p>
+          </div>
+
+          <div class="gauge-card">
+            <svg class="gauge-icon" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.4">
+              <path d="M6 27 A13 13 0 0 1 28 27" stroke-linecap="round"/>
+              <line x1="17" y1="27" x2="10" y2="15" stroke-linecap="round"/>
+              <circle cx="17" cy="27" r="1.6" fill="currentColor" stroke="none"/>
+              <line x1="6" y1="27" x2="6" y2="24.5"/>
+              <line x1="28" y1="27" x2="28" y2="24.5"/>
+              <line x1="17" y1="14" x2="17" y2="16.5"/>
+            </svg>
+            <div class="gauge-stat">№ 1</div>
+            <div class="gauge-sub">National Placement</div>
+            <h3>Mixed Martial Arts</h3>
+            <p>Multiple-time Metropolitan Champion — demonstrating intense personal discipline, resilience, and the ability to perform under high-stress conditions.</p>
+          </div>
+
+          <div class="gauge-card">
+            <svg class="gauge-icon" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.4">
+              <path d="M6 27 A13 13 0 0 1 28 27" stroke-linecap="round"/>
+              <line x1="17" y1="27" x2="20" y2="14.5" stroke-linecap="round"/>
+              <circle cx="17" cy="27" r="1.6" fill="currentColor" stroke="none"/>
+              <line x1="6" y1="27" x2="6" y2="24.5"/>
+              <line x1="28" y1="27" x2="28" y2="24.5"/>
+              <line x1="17" y1="14" x2="17" y2="16.5"/>
+            </svg>
+            <div class="gauge-stat">№ 2</div>
+            <div class="gauge-sub">National Placement</div>
+            <h3>Sanda</h3>
+            <p>Showcases a strong work ethic, physical adaptability, and consistent commitment to training.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="wrap">
+        <p class="eyebrow">Key Engineering Projects</p>
+        <h2>Physical systems, installed and calibrated</h2>
+        <div class="projects-grid">
+
+          <div class="project-card">
+            <svg class="project-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3">
+              <circle cx="16" cy="24" r="9"/>
+              <circle cx="16" cy="24" r="2.4" fill="currentColor" stroke="none"/>
+              <line x1="16" y1="15" x2="16" y2="12"/>
+              <line x1="25" y1="24" x2="28" y2="24"/>
+              <line x1="10" y1="18" x2="7.8" y2="15.8"/>
+              <line x1="22" y1="18" x2="24.2" y2="15.8"/>
+              <path d="M31 30 L37 30 L37 15 L31 15" />
+              <line x1="33.5" y1="19" x2="37" y2="19"/>
+              <line x1="33.5" y1="23" x2="37" y2="23"/>
+              <line x1="33.5" y1="27" x2="37" y2="27"/>
+            </svg>
+            <span class="project-tag">Installation · Calibration</span>
+            <h3>Industrial Dynamometer Installation</h3>
+            <p>Physical installation, anchoring, and alignment of heavy-duty chassis dynamometers used in official vehicle verification centers across Mexico. Calibrated high-capacity mechanical components and sensors to meet strict environmental testing standards.</p>
+          </div>
+
+          <div class="project-card">
+            <svg class="project-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3">
+              <rect x="9" y="7" width="26" height="30" rx="1.5"/>
+              <circle cx="16" cy="15" r="2.3"/>
+              <line x1="16" y1="12.7" x2="16" y2="10.5"/>
+              <circle cx="28" cy="20" r="2.3"/>
+              <line x1="28" y1="17.7" x2="28" y2="15.5"/>
+              <line x1="14" y1="27" x2="20" y2="27"/>
+              <line x1="14" y1="31" x2="24" y2="31"/>
+              <line x1="24" y1="27" x2="30" y2="27"/>
+            </svg>
+            <span class="project-tag">Wiring · Load Design</span>
+            <h3>Commercial Control Panels</h3>
+            <p>Designed, wired, and tested custom electrical control panels for commercial boutique retail spaces. Interpreted wiring schematics and configured high-voltage circuitry to meet specific load requirements safely.</p>
+          </div>
+
+          <div class="project-card">
+            <svg class="project-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3">
+              <rect x="8" y="12" width="20" height="14" rx="1"/>
+              <line x1="14.6" y1="12" x2="14.6" y2="26"/>
+              <line x1="21.3" y1="12" x2="21.3" y2="26"/>
+              <line x1="8" y1="19" x2="28" y2="19"/>
+              <line x1="18" y1="26" x2="18" y2="30"/>
+              <line x1="12" y1="34" x2="24" y2="34"/>
+              <path d="M32 12 L36 12 M34 8 L34 4 M36.5 14.5 L39 12" stroke-linecap="round"/>
+            </svg>
+            <span class="project-tag">Array Design · Grid Tie-In</span>
+            <h3>Grid-Interconnected Solar Systems</h3>
+            <p>Planned and installed physical solar arrays, optimizing panel placement, angle tilt, and inverter wiring to maximize energy generation and ensure seamless CFE grid integration.</p>
+          </div>
+
+          <div class="project-card">
+            <svg class="project-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3">
+              <rect x="6" y="9" width="32" height="24" rx="1.5"/>
+              <line x1="6" y1="14.5" x2="38" y2="14.5"/>
+              <circle cx="10" cy="11.8" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="13" cy="11.8" r="0.9" fill="currentColor" stroke="none"/>
+              <path d="M16 22 L14 22 L14 27 L24 27 L24 24" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="16" cy="29.5" r="1.1"/>
+              <circle cx="22.5" cy="29.5" r="1.1"/>
+              <line x1="27" y1="20" x2="33" y2="20"/>
+              <line x1="27" y1="23" x2="33" y2="23"/>
+            </svg>
+            <span class="project-tag">Deployment · Uptime</span>
+            <h3>E-Commerce Web Infrastructure</h3>
+            <p>Designed, built, and launched a secure, custom e-commerce platform from scratch — shopping cart, API configuration, hosting, and routine server checks, keeping the storefront at 99.9% uptime.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="experience" id="experience">
+      <div class="wrap">
+        <p class="eyebrow">Professional Experience</p>
+        <h2>Reverse-chronological log</h2>
+        <div class="timeline">
+
+          <div class="tl-item current">
+            <span class="tl-node"></span>
+            <div class="tl-head">
+              <div>
+                <div class="tl-role">Independent Electronics Technician</div>
+                <div class="tl-org">Self-Employed</div>
+              </div>
+              <div class="tl-meta">11/2025 — Present · Mexico City</div>
+            </div>
+            <ul>
+              <li>Manage an independent repair service specializing in hardware restoration, software troubleshooting, and data recovery for laptops and mobile devices.</li>
+              <li>Perform diagnostic testing and precision repairs, including screen and battery replacements and basic logic board servicing, using bench power supplies and specialized hand tools.</li>
+            </ul>
+          </div>
+
+          <div class="tl-item current">
+            <span class="tl-node"></span>
+            <div class="tl-head">
+              <div>
+                <div class="tl-role">Teacher</div>
+                <div class="tl-org">Centro de Aprendizaje Parusía</div>
+              </div>
+              <div class="tl-meta">06/2025 — Present · Mexico City</div>
+            </div>
+            <ul>
+              <li>Teach Mathematics and English to students ranging from kindergarten through high school.</li>
+              <li>Adapt instructional methods and communication styles to engage students across highly diverse age groups and comprehension levels.</li>
+            </ul>
+          </div>
+
+          <div class="tl-item">
+            <span class="tl-node"></span>
+            <div class="tl-head">
+              <div>
+                <div class="tl-role">Assistant Hardware Engineer &amp; Assembly Technician</div>
+                <div class="tl-org">Dinosymmetric</div>
+              </div>
+              <div class="tl-meta">04/2024 — 05/2025 · Mexico City</div>
+            </div>
+            <ul>
+              <li>Performed precision assembly of printed circuit boards (PCBs) and electrical wiring systems for industrial testing machinery.</li>
+              <li>Collaborated with senior engineers on the physical manufacturing, structural assembly, and calibration of complete dynamometer systems.</li>
+              <li>Executed on-site diagnostic testing and hardware installations, ensuring machinery met strict engineering specifications.</li>
+            </ul>
+          </div>
+
+          <div class="tl-item">
+            <span class="tl-node"></span>
+            <div class="tl-head">
+              <div>
+                <div class="tl-role">Customer &amp; Technical Support Specialist</div>
+                <div class="tl-org">Keywords Studios</div>
+              </div>
+              <div class="tl-meta">03/2021 — 02/2024 · CDMX / Remote</div>
+            </div>
+            <ul>
+              <li>Managed high-volume, ticket-based support for an international gaming company, consistently meeting strict SLA response times.</li>
+              <li>Investigated, diagnosed, and resolved technical complaints, system glitches, and account discrepancies.</li>
+              <li>Streamlined order processing and billing resolutions, supporting a seamless customer journey and high retention.</li>
+              <li>Coordinated with internal teams via Slack and Discord to escalate and resolve complex technical bugs.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="skills" id="skills">
+      <div class="wrap">
+        <p class="eyebrow">Technical Skills &amp; Languages</p>
+        <h2>Stack &amp; toolset</h2>
+        <div class="skill-groups">
+
+          <div class="skill-row">
+            <div class="skill-label">Languages</div>
+            <div class="chip-row">
+              <span class="chip">English — C2 / Fully Bilingual</span>
+              <span class="chip">Spanish — Native</span>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-label">Hardware Diagnostics &amp; Repair</div>
+            <div class="chip-row">
+              <span class="chip">Device Teardown &amp; Assembly</span>
+              <span class="chip">Component Replacement</span>
+              <span class="chip">Logic Board Troubleshooting</span>
+              <span class="chip">Bench Power Supply Operation</span>
+              <span class="chip">Data Recovery</span>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-label">Technical Troubleshooting</div>
+            <div class="chip-row">
+              <span class="chip">Hardware Installation</span>
+              <span class="chip">PCB Assembly</span>
+              <span class="chip">Circuit Diagnostics</span>
+              <span class="chip">Web / E-Commerce Deployment</span>
+              <span class="chip">Signal &amp; Power Basics</span>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-label">Systems &amp; Software</div>
+            <div class="chip-row">
+              <span class="chip">Linux (Debian)</span>
+              <span class="chip">Windows</span>
+              <span class="chip">Android</span>
+              <span class="chip">Slack</span>
+              <span class="chip">Discord</span>
+              <span class="chip">DaVinci Resolve</span>
+              <span class="chip">FL Studio</span>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-label">Customer Operations</div>
+            <div class="chip-row">
+              <span class="chip">Ticket-Based Support</span>
+              <span class="chip">Case Management</span>
+              <span class="chip">Order Processing</span>
+              <span class="chip">SLA Resolution</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-plate">
+        <div class="foot-title">Francisco Espinosa</div>
+        <div class="foot-links">
+          <a href="mailto:franciscoespinosamiranda@gmail.com">Email</a>
+          <a href="https://linkedin.com/in/francisco-espinosa-1b4665347/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="foot-note">Mexico City, Mexico — built &amp; maintained by hand.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
